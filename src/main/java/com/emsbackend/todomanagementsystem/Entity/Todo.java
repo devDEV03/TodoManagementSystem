@@ -3,6 +3,7 @@ package com.emsbackend.todomanagementsystem.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Entity
 @AllArgsConstructor
@@ -10,12 +11,11 @@ import lombok.*;
 @Data
 @Getter
 @Setter
-@Table(name = "todos")
+@Document(collection = "todos")
 public class Todo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @Column(name = "title" , nullable = false)
     private String title;

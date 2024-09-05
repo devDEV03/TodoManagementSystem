@@ -38,13 +38,13 @@ public class ToDoServiceImpl implements ToDoService {
     }
 
     @Override
-    public ToDoDto getTodo(Long id) {
+    public ToDoDto getTodo(String id) {
         Todo todo = toDoRepository.findById(id).orElseThrow(() -> new RuntimeException("ToDo doesn't exist"));
         return modelMapper.map(todo,ToDoDto.class);
     }
 
     @Override
-    public ToDoDto updateToDo(Long id, ToDoDto toDoDto) {
+    public ToDoDto updateToDo(String id, ToDoDto toDoDto) {
         Todo todo = toDoRepository.findById(id).orElseThrow(() -> new RuntimeException("ToDo doesn't exist"));
         todo.setTitle(toDoDto.getTitle());
         todo.setDescription(toDoDto.getDescription());
@@ -53,13 +53,13 @@ public class ToDoServiceImpl implements ToDoService {
     }
 
     @Override
-    public void deleteToDo(Long id) {
+    public void deleteToDo(String id) {
         Todo todo = toDoRepository.findById(id).orElseThrow(() -> new RuntimeException("ToDo doesn't exist"));
         toDoRepository.delete(todo);
     }
 
     @Override
-    public ToDoDto completeToDo(Long id) {
+    public ToDoDto completeToDo(String id) {
         Todo todo = toDoRepository.findById(id).orElseThrow(() -> new RuntimeException("ToDo doesn't exist"));
         todo.setCompleted(Boolean.TRUE);
         Todo savedToDo = toDoRepository.save(todo);
@@ -67,7 +67,7 @@ public class ToDoServiceImpl implements ToDoService {
     }
 
     @Override
-    public ToDoDto incompleteToDo(Long id) {
+    public ToDoDto incompleteToDo(String id) {
         Todo todo = toDoRepository.findById(id).orElseThrow(() -> new RuntimeException("ToDo doesn't exist"));
         todo.setCompleted(Boolean.FALSE);
         Todo savedToDo = toDoRepository.save(todo);

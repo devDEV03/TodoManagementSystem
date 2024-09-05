@@ -32,31 +32,31 @@ public class ToDoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ToDoDto> geToDo(@PathVariable Long id){
+    public ResponseEntity<ToDoDto> geToDo(@PathVariable String id){
         ToDoDto toDoDto = toDoService.getTodo(id);
         return ResponseEntity.ok(toDoDto);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ToDoDto> updateToDo(@PathVariable Long id,@RequestBody ToDoDto toDoDto){
+    public ResponseEntity<ToDoDto> updateToDo(@PathVariable String id,@RequestBody ToDoDto toDoDto){
         ToDoDto updateToDoDto = toDoService.updateToDo(id,toDoDto);
         return ResponseEntity.ok(updateToDoDto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteToDo(@PathVariable Long id){
+    public ResponseEntity<String> deleteToDo(@PathVariable String id){
         toDoService.deleteToDo(id);
         return ResponseEntity.ok("ToDo has been deleted");
     }
 
     @PatchMapping("/{id}/complete")
-    public ResponseEntity<ToDoDto> completeToDo(@PathVariable Long id){
+    public ResponseEntity<ToDoDto> completeToDo(@PathVariable String id){
         ToDoDto toDoDto = toDoService.completeToDo(id);
         return ResponseEntity.ok(toDoDto);
     }
 
     @PatchMapping("/{id}/incomplete")
-    public ResponseEntity<ToDoDto> incompleteToDo(@PathVariable Long id){
+    public ResponseEntity<ToDoDto> incompleteToDo(@PathVariable String id){
         ToDoDto toDoDto = toDoService.incompleteToDo(id);
         return ResponseEntity.ok(toDoDto);
     }

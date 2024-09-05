@@ -7,15 +7,16 @@ import java.util.List;
 public interface ToDoService {
     ToDoDto addToDo(ToDoDto toDoDto);
 
+
     List<ToDoDto> getTodos();
 
-    ToDoDto getTodo(Long id);
+    ToDoDto getTodo(String id);
 
-    ToDoDto updateToDo(Long id, ToDoDto toDoDto);
+    ToDoDto updateToDo(String id, ToDoDto toDoDto);
 
-    void deleteToDo(Long id);
+    void deleteToDo(String id);
 
-    ToDoDto completeToDo(Long id);
+    ToDoDto completeToDo(String id);
 
-    ToDoDto incompleteToDo(Long id);
+    ToDoDto incompleteToDo(String id);
 }
