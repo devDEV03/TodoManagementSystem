@@ -49,7 +49,8 @@ public class ToDoServiceImpl implements ToDoService {
         todo.setTitle(toDoDto.getTitle());
         todo.setDescription(toDoDto.getDescription());
         todo.setCompleted(toDoDto.isCompleted());
-        return modelMapper.map(todo,ToDoDto.class);
+        Todo savedTodo = toDoRepository.save(todo);
+        return modelMapper.map(savedTodo,ToDoDto.class);
     }
 
     @Override
