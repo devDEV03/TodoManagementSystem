@@ -10,13 +10,13 @@ public interface ToDoService {
 
     List<ToDoDto> getTodos();
 
-    ToDoDto getTodo(String id);
+    ToDoDto getTodo(Long id);
 
-    ToDoDto updateToDo(String id, ToDoDto toDoDto);
+    ToDoDto updateToDo(Long id, ToDoDto toDoDto);
 
-    void deleteToDo(String id);
+    void deleteToDo(Long id);
 
-    ToDoDto completeToDo(String id);
+    ToDoDto completeToDo(Long id);
 
-    ToDoDto incompleteToDo(String id);
+    ToDoDto incompleteToDo(Long id);
 }

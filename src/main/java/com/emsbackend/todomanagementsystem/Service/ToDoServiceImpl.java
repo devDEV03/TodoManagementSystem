@@ -2,9 +2,9 @@ package com.emsbackend.todomanagementsystem.Service;
 
 import com.emsbackend.todomanagementsystem.DTO.ToDoDto;
 import com.emsbackend.todomanagementsystem.Entity.Todo;
-import com.emsbackend.todomanagementsystem.Mapper.TodoMapper;
 import com.emsbackend.todomanagementsystem.Repository.ToDoRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +16,7 @@ import static java.util.Arrays.stream;
 
 @Service
 @AllArgsConstructor
+@NoArgsConstructor
 public class ToDoServiceImpl implements ToDoService {
 
     @Autowired
@@ -38,13 +39,13 @@ public class ToDoServiceImpl implements ToDoService {
     }
 
     @Override
-    public ToDoDto getTodo(String id) {
+    public ToDoDto getTodo(Long id) {
         Todo todo = toDoRepository.findById(id).orElseThrow(() -> new RuntimeException("ToDo doesn't exist"));
         return modelMapper.map(todo,ToDoDto.class);
     }
 
     @Override
-    public ToDoDto updateToDo(String id, ToDoDto toDoDto) {
+    public ToDoDto updateToDo(Long id, ToDoDto toDoDto) {
         Todo todo = toDoRepository.findById(id).orElseThrow(() -> new RuntimeException("ToDo doesn't exist"));
         todo.setTitle(toDoDto.getTitle());
         todo.setDescription(toDoDto.getDescription());
@@ -54,13 +55,13 @@ public class ToDoServiceImpl implements ToDoService {
     }
 
     @Override
-    public void deleteToDo(String id) {
+    public void deleteToDo(Long id) {
         Todo todo = toDoRepository.findById(id).orElseThrow(() -> new RuntimeException("ToDo doesn't exist"));
         toDoRepository.delete(todo);
     }
 
     @Override
-    public ToDoDto completeToDo(String id) {
+    public ToDoDto completeToDo(Long id) {
         Todo todo = toDoRepository.findById(id).orElseThrow(() -> new RuntimeException("ToDo doesn't exist"));
         todo.setCompleted(Boolean.TRUE);
         Todo savedToDo = toDoRepository.save(todo);
@@ -68,7 +69,7 @@ public class ToDoServiceImpl implements ToDoService {
     }
 
     @Override
-    public ToDoDto incompleteToDo(String id) {
+    public ToDoDto incompleteToDo(Long id) {
         Todo todo = toDoRepository.findById(id).orElseThrow(() -> new RuntimeException("ToDo doesn't exist"));
         todo.setCompleted(Boolean.FALSE);
         Todo savedToDo = toDoRepository.save(todo);

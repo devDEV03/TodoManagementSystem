@@ -1,22 +1,22 @@
-#server:
-#  port: 8080
-#spring:
-#  datasource:
-#    url: ${SPRING_DATASOURCE_URL}
-#    username: ${SPRING_DATASOURCE_USERNAME}
-#    password: ${SPRING_DATASOURCE_PASSWORD}
-#    driver-class-name: com.mysql.jdbc.Driver
-#  jpa:
-#    show-sql: true
-#    hibernate:
-#      ddl-auto: update
-#
-
-spring:
-  data:
-    mongodb:
-      uri: mongodb+srv://dev:dev1234567890@cluster0.zddpw.mongodb.net/mydatabase?retryWrites=true&w=majority&appName=Cluster0
-      database: mydatabase
-      auto-index-creation: true
 server:
-  port: 8080  # Or any port you prefer
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/todomanagement
+    username: root
+    password: admin
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+#
+#spring:
+#  data:
+#    mongodb:
+#      uri: mongodb+srv://dev:dev1234567890@cluster0.zddpw.mongodb.net/mydatabase?retryWrites=true&w=majority&appName=Cluster0
+#      database: mydatabase
+#      auto-index-creation: true
+#server:
+#  port: 8080  # Or any port you prefer
