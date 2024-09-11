@@ -1,6 +1,7 @@
 package com.emsbackend.todomanagementsystem.Controller;
 
 
+import com.emsbackend.todomanagementsystem.DTO.JwtAuthResponse;
 import com.emsbackend.todomanagementsystem.DTO.LoginDto;
 import com.emsbackend.todomanagementsystem.DTO.RegisterDto;
 import com.emsbackend.todomanagementsystem.Service.AuthService;
@@ -25,8 +26,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginDto loginDto){
-        String response = authService.login(loginDto);
-        return new ResponseEntity<>(response,HttpStatus.CREATED);
+    public ResponseEntity<JwtAuthResponse> login(@RequestBody LoginDto loginDto){
+        JwtAuthResponse jwtAuthResponse = authService.login(loginDto);
+        return new ResponseEntity<>(jwtAuthResponse,HttpStatus.CREATED);
     }
 }

@@ -17,13 +17,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableMethodSecurity
 @AllArgsConstructor
 public class SpringSecurityConfig {
 
-//    private UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService;
+    private JwtAuthenticationEntryPoint authenticationEntryPoint;
+    private JwtAuthenticationFilter authenticationFilter;
     @Bean
     public static PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -41,8 +44,15 @@ public class SpringSecurityConfig {
 //                    authorize.requestMatchers(HttpMethod.PATCH,"/api/**").hasAnyRole("ADMIN","USER");
 //                    authorize.requestMatchers(HttpMethod.GET,"/api/**").permitAll();
                     authorize.requestMatchers("/api/auth/**").permitAll();
+                    authorize.requestMatchers(HttpMethod.OPTIONS,"/**").permitAll();
                     authorize.anyRequest().authenticated();
                 }).httpBasic(Customizer.withDefaults());
+
+        httpSecurity.exceptionHandling(exception ->
+                exception.authenticationEntryPoint(authenticationEntryPoint));
+
+        httpSecurity.addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
 
         return httpSecurity.build();
     }
